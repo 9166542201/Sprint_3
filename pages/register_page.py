@@ -3,10 +3,9 @@ from locators import URL, RegisterPageLocators
 
 
 class RegisterPage(BasePage):
-    def open(self):
-        self.browser.get(URL + 'register')
-        self.url_to_be(URL + 'register')
-        return self
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.__open__(URL + 'register')
 
     def should_be_register_form_on_page(self):
         assert self.is_element_visible(RegisterPageLocators.NAME)
@@ -29,4 +28,4 @@ class RegisterPage(BasePage):
     def should_be_login_clickable(self):
         assert self.is_element_visible(RegisterPageLocators.LOGIN_LINK)
         self.click_element(RegisterPageLocators.LOGIN_LINK)
-        self.url_to_be(URL + 'login')
+        assert self.url_to_be(URL + 'login')

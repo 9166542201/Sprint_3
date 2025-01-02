@@ -8,6 +8,10 @@ class BasePage:
     def __init__(self, browser):
         self.browser = browser
 
+    def __open__(self, url):
+        self.browser.get(url)
+        assert self.url_to_be(url)
+
     def url_to_be(self, url):
         try:
             WebDriverWait(self.browser, 3).until(expected_conditions.url_to_be(url))

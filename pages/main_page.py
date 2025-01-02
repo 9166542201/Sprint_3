@@ -3,11 +3,9 @@ from locators import URL, BaseLocators, MainPageLocators
 
 
 class MainPage(BasePage):
-
-    def open(self):
-        self.browser.get(URL)
-        assert self.url_to_be(URL)
-        return self
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.__open__(URL)
 
     def should_login_be_clickable(self):
         assert self.is_element_visible(MainPageLocators.LOGIN_BUTTON)
